@@ -5,7 +5,7 @@ env:
         AWS_REGION_NAME: ap-northeast-2
         ECR_REPOSITORY_NAME: sbcntr-backend
         DOCKER_BUILDKIT: "1"
-    
+
 phases:
     pre_build:
         commands:
@@ -20,9 +20,9 @@ phases:
     post_build:
         commands:
             - docker image push ${REPOSITORY_URI}:${IMAGE_TAG}
-            - printf '{"name":"%s","imageURI":"%s"}' $ECR_REPOSITORY_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+            # ⭐ 아래 줄로 교체해 주세요 (대괄호 [], imageUri 소문자 변환, 이스케이프 완벽 적용)
+            - echo "[{\"name\":\"${ECR_REPOSITORY_NAME}\",\"imageUri\":\"${REPOSITORY_URI}:${IMAGE_TAG}\"}]" > imagedefinitions.json
 
 artifacts:
     files:
         - imagedefinitions.json
-
