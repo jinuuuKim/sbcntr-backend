@@ -21,7 +21,7 @@ phases:
         commands:
             - docker image push ${REPOSITORY_URI}:${IMAGE_TAG}
             # ⭐ 아래 줄로 교체해 주세요 (대괄호 [], imageUri 소문자 변환, 이스케이프 완벽 적용)
-            - echo "[{\"name\":\"${ECR_REPOSITORY_NAME}\",\"imageUri\":\"${REPOSITORY_URI}:${IMAGE_TAG}\"}]" > imagedefinitions.json
+            - echo "[{\"name\":\"app\",\"imageUri\":\"${REPOSITORY_URI}:${IMAGE_TAG}\"}]" > imagedefinitions.json
 
 artifacts:
     files:
